@@ -24,7 +24,11 @@ private slots:
 
     void on_actionExit_triggered();
 
-    void on_pushButton_3_clicked();
+    void on_addButton_clicked();
+
+    void on_removeButton_clicked();
+
+    void on_actionAbout_program_triggered();
 
 private:
     Ui::MainWindow *ui;

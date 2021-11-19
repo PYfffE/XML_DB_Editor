@@ -6,12 +6,14 @@
 #include <QVector>
 #include <QXmlStreamReader>
 #include <QString>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("XML editor");
 }
 
 MainWindow::~MainWindow()
@@ -163,7 +165,7 @@ void MainWindow::on_actionSaveAs_triggered()
 void MainWindow::on_actionExit_triggered() {exit(0);}
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_addButton_clicked()
 {
     int length = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(length);
@@ -171,5 +173,25 @@ void MainWindow::on_pushButton_3_clicked()
     ui->tableWidget->setItem(length, 1,new QTableWidgetItem("null"));
     ui->tableWidget->setItem(length, 2,new QTableWidgetItem("null"));
     ui->tableWidget->setItem(length, 3,new QTableWidgetItem("null"));
+}
+
+
+void MainWindow::on_removeButton_clicked()
+{
+    if(ui->lineNumberEdit->text() == "") return;
+
+    ui->tableWidget->removeRow(ui->lineNumberEdit->text().toInt() - 1);
+}
+
+
+void MainWindow::on_actionAbout_program_triggered()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("About");
+    msgBox.setText("This is a simple XML-like database editor\n"
+                    "Author: PYfffE\n"
+                    "Github: github.com/PYfffE\n"
+                    "License: GPLv3");
+    msgBox.exec();
 }
 
