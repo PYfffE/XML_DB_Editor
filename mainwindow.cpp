@@ -114,7 +114,12 @@ QString openFilePath = "";
 
 void MainWindow::on_actionOpen_triggered()
 {
+
     openFilePath = QFileDialog::getOpenFileName(this, "Open", ".//");
+
+    for(int i = ui->tableWidget->rowCount() - 1; i >=0; i--){
+        ui->tableWidget->removeRow(i);
+    }
 
     if(openFilePath == "") return;
 
